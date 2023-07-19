@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div id="color" class="card-header" style="background-color: #1f81dd; ">
+              <h4 class="card-title" style="color: white; font-weight: bold;">Productos</h4>
+              <div class="text-right">
+                <!-- Button trigger modal -->
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  routerLink="/creaFactura"
+                >
+                  Nueva Factura
+                </button>
+              </div>
+              <p class="card-category" style="color: white;">Listado de Facturas</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="factura-table" class="table" datatable [dtOptions]="dtOptionsF">
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

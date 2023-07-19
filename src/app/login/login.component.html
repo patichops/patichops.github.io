@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="container-fluid ">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card" >
+            <div class="card-header card-header-success text-center">
+              <h4 class="card-title">Login</h4>
+              <p class="card-category">Acceso al Sistema</p>
+            </div>
+            <div class="card-body">
+                <form class="custom-form" method="post">
+                    <h1>Ingresa tus Credenciales</h1>
+                    <input
+                      type="email"
+                      [(ngModel)]="credenciales.cedula"
+                      name="email"
+                      placeholder="Ingresa tu cedula"
+                      required="required"
+                    />
+                    <input
+                      type="password"
+                      [(ngModel)]="this.contra"
+                      name="password"
+                      placeholder="Ingresa tu Password"
+                      required="required"
+                    />
+                    <button type="submit" (click)="login()">Ingresar</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

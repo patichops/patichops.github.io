@@ -1,0 +1,233 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div id="color" class="card-header" style="background-color: #1f81dd; ">
+            <h4 class="card-title" style="color: white; font-weight: bold;">Productos</h4>
+            <div class="text-right">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Agregar
+              </button>
+            </div>
+            <p class="card-category" style="color: white;">Listado de Productos</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="producto-table" class="table" datatable [dtOptions]="dtOptionsP">
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+class="modal fade"
+id="exampleModal"
+tabindex="-1"
+role="dialog"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Producto</h5>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <!--NOMBRE-->
+  <div class="modal-body">
+    <div class="form-group position-relative has-icon-left">
+      <div class="col-md-12 pr-1">
+        <div class="form-group">
+          <h5 style="font-weight: bold;">Nombre</h5>
+          <input
+            name="txtNombre"
+            class="form-control"
+            type="text"
+            maxlength="20"
+            [(ngModel)] = "producto.nombre"
+          />
+        </div>
+      </div>
+     
+      <div class="form-group position-relative has-icon-left">
+        <div class="col-md-12 pr-1">
+          <div class="form-group">
+            <h5 style="font-weight: bold;">Precio</h5>
+            <input
+              name="txtPrecio"
+              min="1"
+              class="form-control"
+              id="txtStock"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              type="number"
+              maxlength="6"
+              [(ngModel)] = "producto.precio"
+            />
+          </div>
+        </div>
+
+        <div class="form-group position-relative has-icon-left">
+          <div class="col-md-12 pr-1">
+            <div class="form-group">
+              <h5 style="font-weight: bold;">Stock</h5>
+              <input
+              name="txtStock"
+              min="1"
+              class="form-control"
+              id="txtStock"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              type="number"
+              maxlength="6"
+              [(ngModel)] = "producto.stock"
+            />
+            </div>
+          </div>
+
+    </div>
+  
+      </div>        
+    </div>
+
+  
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      #closeModalProducto
+      class="btn btn-secondary"
+      data-dismiss="modal"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      (click)="GuardarProducto()"
+      class="btn btn-primary"      
+    >
+      Guardar
+    </button>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div
+class="modal fade"
+id="exampleModalProducto"
+tabindex="-1"
+role="dialog"
+aria-labelledby="exampleModalProducto"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Editar Producto</h5>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  
+  <!--NOMBRE-->
+  <div class="modal-body">
+    <div class="form-group position-relative has-icon-left">
+      <div class="col-md-12 pr-1">
+        <div class="form-group">
+          <h5 style="font-weight: bold;">Nombre</h5>
+          <input
+            name="txtNombre"
+            class="form-control"
+            type="text"
+            maxlength="20"
+            [(ngModel)] = "producto.nombre"
+          />
+        </div>
+      </div>
+     
+      <div class="form-group position-relative has-icon-left">
+        <div class="col-md-12 pr-1">
+          <div class="form-group">
+            <h5 style="font-weight: bold;">Precio</h5>
+            <input
+              name="txtPrecio"
+              min="1"
+              class="form-control"
+              id="txtStock"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              type="number"
+              maxlength="6"
+              [(ngModel)] = "producto.precio"
+            />
+          </div>
+        </div>
+
+        <div class="form-group position-relative has-icon-left">
+          <div class="col-md-12 pr-1">
+            <div class="form-group">
+              <h5 style="font-weight: bold;" >Stock</h5>
+              <input
+              name="txtStock"
+              min="1"
+              class="form-control"
+              id="txtStock"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              type="number"
+              maxlength="6"
+              [(ngModel)] = "producto.stock"
+            />
+            </div>
+          </div>
+
+    </div>
+  
+      </div>        
+    </div>
+
+  
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      #closeEditarP
+      class="btn btn-secondary"
+      data-dismiss="modal"
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      (click)="EditarP()"
+      class="btn btn-primary"      
+    >
+      Guardar
+    </button>
+  </div>
+</div>
+</div>
+</div>

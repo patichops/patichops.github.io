@@ -1,0 +1,285 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div id="color" class="card-header" style="background-color: #1f81dd; ">
+            <h4 class="card-title" style="color: white; font-weight: bold;">Clientes</h4>
+            <div class="text-right">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Agregar
+              </button>
+            </div>
+            <p class="card-category" style="color: white;">Listado de Clientes</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="client-table" class="table" datatable [dtOptions]="dtOptions">
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">Nuevo Cliente</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group position-relative has-icon-left">
+          <input
+            name="txtCed"
+            placeholder="Cédula"
+            [(ngModel)]="cliente.cedula"
+            placeholder="1800000111"
+            onkeypress="return event.charCode >= 48"
+            min="1"
+            class="form-control"
+            id="txtCed"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number"
+            maxlength="10"
+          />
+        </div>
+
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtNom"
+            type="text"
+            [(ngModel)]="cliente.nombre"
+            placeholder="Nombres"
+            placeholder="Nombres"
+            class="form-control"
+            maxlength="30"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtApe"
+            type="text"
+            placeholder="Apellidos"
+            [(ngModel)]="cliente.apellido"
+            placeholder="Apellidos"
+            class="form-control"
+            maxlength="30"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtCorreo"
+            type="text"
+            placeholder="Correo"
+            [(ngModel)]="cliente.correo"
+            placeholder="Correo"
+            class="form-control"
+            maxlength="30"
+          />
+        </div>
+        
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtContraseña"
+            type="password"
+            placeholder="Contraseña"
+            [(ngModel)]="this.contra"
+            placeholder="Contraseña"
+            class="form-control"
+            maxlength="30"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            name="txtTel"
+            onkeypress="return event.charCode >= 48"
+            [(ngModel)]="cliente.telefono"
+            placeholder="09999999999"
+            min="1"
+            placeholder="Tel/Cel"
+            class="form-control"
+            id="txtTel"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="number"
+            maxlength="10"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtDir"
+            type="text"
+            placeholder="Dirección"
+            [(ngModel)]="cliente.direccion"
+            placeholder="Ambato Av El Rey"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          #closeModal
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          (click)="GuardarCliente()"
+          class="btn btn-primary"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModalEditar"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalEditar"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group position-relative has-icon-left">
+          <input
+            name="txtCed"
+            placeholder="Cédula"
+            [(ngModel)]="cliente.cedula"
+            placeholder="1800000111"
+            onkeypress="return event.charCode >= 48"
+            min="1"
+            class="form-control"
+            id="txtCed"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="text"
+            maxlength="10"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtNom"
+            type="text"
+            [(ngModel)]="cliente.nombre"
+            placeholder="Nombres"
+            placeholder="Nombres"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtApe"
+            type="text"
+            placeholder="Apellidos"
+            [(ngModel)]="cliente.apellido"
+            placeholder="Apellidos"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtCorreo"
+            type="text"
+            placeholder="Correo"
+            [(ngModel)]="cliente.correo"
+            placeholder="Correo"
+            class="form-control"
+            maxlength="30"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtContraseña"
+            type="password"
+            [(ngModel)]="this.contra"
+            class="form-control"
+            maxlength="30"
+            name="txtContraseña"
+            min="1"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            name="txtTel"
+            onkeypress="return event.charCode >= 48"
+            [(ngModel)]="cliente.telefono"
+            placeholder="0963357853"
+            min="1"
+            placeholder="Tel/Cel"
+            class="form-control"
+            id="txtTel"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type="text"
+            maxlength="10"
+          />
+        </div>
+        <div class="form-group position-relative has-icon-left">
+          <input
+            id="txtDir"
+            type="text"
+            placeholder="Dirección"
+            [(ngModel)]="cliente.direccion"
+            placeholder="Ambato Av El Rey"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          #closeEditar
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" (click)="Editar()" class="btn btn-primary">
+          Editar Cliente
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
